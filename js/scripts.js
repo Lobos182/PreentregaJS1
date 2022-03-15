@@ -1,22 +1,37 @@
 
 
-const PRODUCTO1 = new Producto("zapas niky", 900, 'zapatillas deportivas');
-const PRODUCTO2 = new Producto("zapas adidas", 850, 'zapatillas deportivas');
-const PRODUCTO3 = new Producto("zapas puma", 899, 'zapatillas deportivas');
-const PRODUCTO4 = new Producto("pantalon niky", 500, 'Ropa deportivas');
-const PRODUCTO5 = new Producto("pantalon rebook", 700, 'Ropa deportivas');
-const PRODUCTO6 = new Producto("short niky", 580, 'Ropa deportivas');
 
-function Producto(titulo, precio, categoria) {
-    this.titulo = titulo;
-    this.precio = precio;
-    this.categoria = categoria;
-    this.agregarAlCarrito = function () { console.log(`Agregaste al Carrito`) }
-}
+const agregarAlCarrito = (nuevoListadoProductos) => {
+    carrito.push(nuevoListadoProductos);
+};
+
+const carrito = [];
+
+const productos = [
+    { id: 1, titulo: "Zapa niky", precio: 900,categoria:"zapatillas deportivas", stock:0 },
+    { id: 2, titulo: "zapas adidas", precio: 850,categoria:"zapatillas deportivas", stock:10 },
+    { id: 3, titulo: "zapas puma", precio: 700,categoria:"zapatillas deportivas", stock:5},
+    { id: 4, titulo: "pantalon niky", precio: 600,categoria:"ropa deportiva", stock:56 },
+    { id: 5, titulo: "pantalon rebook", precio: 500,categoria:"ropa deportiva", stock:0 },
+    { id: 6, titulo: "short niky", precio: 450,categoria:"ropa deportiva", stock:12 },
+];
+//mostrando el array completo con todo
+
+productos.forEach((producto)=>{console.log(producto)});
 
 
-function agregarAlCarrito(producto) {
-    console.log(producto);
-    const textoAMostrar = `Agregas al carrito ${producto.titulo} - $ ${producto.precio}`;
-    console.log(textoAMostrar);
-}
+//crear nuevo array sin los productos que no tienen stock
+const nuevoListadoProductos = productos.filter((producto)=>producto.stock!=0)
+console.log(nuevoListadoProductos);
+
+
+// Sumar total del carrito solo con los productos con stock
+const totalDelCarrito = nuevoListadoProductos.reduce((acumulador, producto) => acumulador + producto.precio, 0);
+console.log("Total del carrito:" + totalDelCarrito);
+
+
+
+
+
+
+
